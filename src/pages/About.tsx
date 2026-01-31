@@ -68,7 +68,7 @@ const About: React.FC = () => {
                         <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} className="relative group">
                             <div className="aspect-[4/5] bg-white rounded-[3rem] overflow-hidden shadow-2xl relative">
                                 {/* Updated image as requested by user */}
-                                <img src="/logo nobreza/fnobreza.png" className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" alt="Sobre a Farmácia Nobreza" />
+                                <img src="/logo-nobreza/fnobreza.png" className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" alt="Sobre a Farmácia Nobreza" />
                                 <div className="absolute top-8 left-8 p-4 bg-white/90 backdrop-blur rounded-2xl border border-white/5 shadow-sm flex items-center gap-3">
                                     <Award className="w-6 h-6" style={{ color: goldColor }} />
                                     <span className="text-[10px] font-bold uppercase tracking-widest text-[#051F12]">{t('home.certifiedCompany')}</span>
