@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
             <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 px-6 md:px-12 py-5">
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <Link to="/" className="flex items-center gap-3 cursor-pointer">
-                        <img src="/logo nobreza/Farmácia Nobreza Logo.png" alt="Farmácia Nobreza" className="h-16 w-auto object-contain" />
+                        <img src="/logo-nobreza/logo-main.png" alt="Farmácia Nobreza" className="h-16 w-auto object-contain" />
                     </Link>
 
                     <div className="hidden lg:flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">

@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
                     <div className="flex items-start">
                         <Link to="/" onClick={scrollToTop} className="group">
                             {/* Logo resized to h-16 (approx 64px) from h-24 */}
-                            <img src="/logo nobreza/Farmácia Nobreza Logo 2.png" alt="Farmácia Nobreza" className="h-16 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
+                            <img src="/logo-nobreza/logo-2.png" alt="Farmácia Nobreza" className="h-16 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
                         </Link>
                     </div>
                     <p className="text-slate-400 text-sm leading-relaxed max-w-sm"> {/* text-base -> text-sm */}
