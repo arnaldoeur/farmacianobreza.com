@@ -14,6 +14,7 @@ import {
     HelpingHand
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import InquiryModal from '../components/InquiryModal';
 
 const primaryColor = "#1B5736";
 const goldColor = "#D9A84E";
@@ -22,6 +23,13 @@ const darkColor = "#051F12";
 const Plans: React.FC = () => {
     const { t } = useLanguage();
     const [activePlan, setActivePlan] = useState<number | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPlanTitle, setSelectedPlanTitle] = useState('');
+
+    const openModal = (title: string) => {
+        setSelectedPlanTitle(title);
+        setIsModalOpen(true);
+    };
 
     const plans = [
         {
@@ -29,14 +37,14 @@ const Plans: React.FC = () => {
             icon: User,
             color: 'green',
             desc: t('home.planSingularDesc'),
-            price: '500 MT',
-            period: '/mês',
+            price: 'Sob Consulta',
+            period: '',
             features: [
                 t('home.planSingularFeat1'),
                 t('home.planSingularFeat2'),
                 t('home.planSingularFeat3'),
                 t('home.planSingularFeat4'),
-                'Desconto de 5% em Suplementos' // Needs check if I translated this? No key for this.
+                'Desconto de 5% em Suplementos'
             ]
         },
         {
@@ -44,16 +52,16 @@ const Plans: React.FC = () => {
             icon: Users2,
             color: 'blue',
             desc: t('home.planFamilyDesc'),
-            price: '1.200 MT',
-            period: '/mês',
+            price: 'Sob Consulta',
+            period: '',
             recommended: true,
             features: [
                 t('home.planFamilyFeat1'),
                 t('home.planFamilyFeat2'),
                 t('home.planFamilyFeat3'),
                 t('home.planFamilyFeat4'),
-                t('home.planSingularFeat2'), // Reusing free delivery
-                'Histórico Familiar Unificado' // Missing key?
+                t('home.planSingularFeat2'),
+                'Histórico Familiar Unificado'
             ]
         },
         {
@@ -68,8 +76,8 @@ const Plans: React.FC = () => {
                 t('home.planCollectiveFeat2'),
                 t('home.planCollectiveFeat3'),
                 t('home.planCollectiveFeat4'),
-                'Campanhas de Vacinação', // Missing key
-                'Gestor de Conta Dedicado' // Missing key
+                'Campanhas de Vacinação',
+                'Gestor de Conta Dedicado'
             ]
         }
     ];
@@ -138,8 +146,8 @@ const Plans: React.FC = () => {
                             <p className={`text-sm mb-8 leading-relaxed ${plan.recommended ? 'text-slate-300' : 'text-slate-500'}`}>{plan.desc}</p>
 
                             <div className="mb-8">
-                                <span className={`text-4xl font-extrabold ${plan.recommended ? 'text-white' : 'text-[#051F12]'}`}>{plan.price}</span>
-                                <span className={`text-sm ${plan.recommended ? 'text-slate-400' : 'text-slate-400'}`}>{plan.period}</span>
+                                <span className={`text-3xl font-extrabold ${plan.recommended ? 'text-white' : 'text-[#051F12]'}`}>{plan.price}</span>
+                                {plan.period && <span className={`text-sm ${plan.recommended ? 'text-slate-400' : 'text-slate-400'}`}>{plan.period}</span>}
                             </div>
 
                             <div className="space-y-4 mb-10">
@@ -151,7 +159,10 @@ const Plans: React.FC = () => {
                                 ))}
                             </div>
 
-                            <button className={`w-full py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all flex items-center justify-center gap-2 ${plan.recommended ? 'bg-[#D9A84E] text-[#051F12] hover:bg-white' : 'bg-[#051F12] text-white hover:opacity-90'}`}>
+                            <button
+                                onClick={() => openModal(plan.title)}
+                                className={`w-full py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all flex items-center justify-center gap-2 ${plan.recommended ? 'bg-[#D9A84E] text-[#051F12] hover:bg-white' : 'bg-[#051F12] text-white hover:opacity-90'}`}
+                            >
                                 {t('home.joinNow')} <ArrowRight className="w-4 h-4" />
                             </button>
                         </motion.div>
@@ -181,6 +192,11 @@ const Plans: React.FC = () => {
                 </div>
             </div>
 
+            <InquiryModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                planTitle={selectedPlanTitle}
+            />
         </div>
     );
 };

@@ -32,6 +32,7 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { GalleryItem, StrategicPoint } from '../../types';
 import { useLanguage } from '../contexts/LanguageContext';
+import InquiryModal from '../components/InquiryModal';
 
 const primaryColor = "#1B5736";
 const secondaryColor = "#F2CD5C";
@@ -48,6 +49,13 @@ const Home: React.FC = () => {
     const [selectedImage, setSelectedImage] = useState<any | null>(null);
     const [activeTab, setActiveTab] = useState<TabType>('missao');
     const { t } = useLanguage();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPlanTitle, setSelectedPlanTitle] = useState('');
+
+    const openModal = (title: string) => {
+        setSelectedPlanTitle(title);
+        setIsModalOpen(true);
+    };
 
     const services = [
         { icon: Stethoscope, title: t('home.service1'), desc: t('home.service1Desc') },
@@ -340,7 +348,10 @@ const Home: React.FC = () => {
                                     ))}
                                 </div>
 
-                                <button className="w-full py-4 rounded-xl text-white font-bold uppercase tracking-widest text-[10px] transition-all hover:opacity-90 shadow-md mt-auto" style={{ backgroundColor: darkColor }}>
+                                <button
+                                    onClick={() => openModal(plan.title)}
+                                    className="w-full py-4 rounded-xl text-white font-bold uppercase tracking-widest text-[10px] transition-all hover:opacity-90 shadow-md mt-auto" style={{ backgroundColor: darkColor }}
+                                >
                                     {t('home.joinNow')}
                                 </button>
                             </div>
@@ -464,6 +475,11 @@ const Home: React.FC = () => {
                     </div>
                 </div>
             </section>
+            <InquiryModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                planTitle={selectedPlanTitle}
+            />
         </div >
     );
 };
