@@ -1,0 +1,7 @@
+{
+  "name": "Farmácia Nobreza",
+  "description": "Website institucional da Farmácia Nobreza em Mandimba, Moçambique.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
